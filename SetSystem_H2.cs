@@ -673,6 +673,54 @@ namespace Revit_SystemSetter
 
     }
 
+    [Transaction(TransactionMode.Manual)]
+    public class SetSystem_H703 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Application app = uiapp.Application;
+            Document doc = uidoc.Document;
+
+            Transaction trans = new Transaction(doc);
+            trans.Start("Epic System Change");
+
+            var selection = uidoc.Selection.GetElementIds();
+
+            foreach (ElementId id in selection)
+            {
+                Element E = uidoc.Document.GetElement(id);
+                var P = E.GetParameters("MC System Name");
+
+                if (P.Count > 0)
+                {
+                    //var R = P[0].AsString();
+                    P[0].Set("Earthing System");
+                }
+
+                var P1 = E.GetParameters("MC System Code");
+
+                if (P1.Count > 0)
+                {
+                    //var R = P[0].AsString();
+                    P1[0].Set("H703");
+                }
+
+
+                //System.Windows.Forms.MessageBox.Show(R);
+
+                //System.Windows.Forms.MessageBox.Show(P[0].Set("ChangeTest").ToString());
+
+
+            }
+
+            trans.Commit();
+            return Result.Succeeded;
+        }
+
+
+    }
 
 
 }
