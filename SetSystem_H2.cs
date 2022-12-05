@@ -472,6 +472,183 @@ namespace Revit_SystemSetter
     }
 
 
+    // UATS
+    [Transaction(TransactionMode.Manual)]
+    public class SetSystem_J401 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Application app = uiapp.Application;
+            Document doc = uidoc.Document;
+
+            Transaction trans = new Transaction(doc);
+            trans.Start("Epic System Change");
+
+            var selection = uidoc.Selection.GetElementIds();
+
+            foreach (ElementId id in selection)
+            {
+                Element E = uidoc.Document.GetElement(id);
+                var P = E.GetParameters("MC System Name");
+
+                if (P.Count > 0)
+                {
+                    //var R = P[0].AsString();
+                    P[0].Set("Fire alarm system");
+                }
+
+                var P1 = E.GetParameters("MC System Code");
+
+                if (P1.Count > 0)
+                {
+                    //var R = P[0].AsString();
+                    P1[0].Set("J401");
+                }
+
+            }
+
+            trans.Commit();
+            return Result.Succeeded;
+        }
+
+
+    }
+
+    // ESS-AS
+    [Transaction(TransactionMode.Manual)]
+    public class SetSystem_J402 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Application app = uiapp.Application;
+            Document doc = uidoc.Document;
+
+            Transaction trans = new Transaction(doc);
+            trans.Start("Epic System Change");
+
+            var selection = uidoc.Selection.GetElementIds();
+
+            foreach (ElementId id in selection)
+            {
+                Element E = uidoc.Document.GetElement(id);
+                var P = E.GetParameters("MC System Name");
+
+                if (P.Count > 0)
+                {
+
+                    P[0].Set("Intrusion system");
+                }
+
+                var P1 = E.GetParameters("MC System Code");
+
+                if (P1.Count > 0)
+                {
+
+                    P1[0].Set("J402");
+                }
+
+            }
+
+            trans.Commit();
+            return Result.Succeeded;
+        }
+
+
+    }
+
+    // ESS-PK
+    [Transaction(TransactionMode.Manual)]
+    public class SetSystem_J403 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Application app = uiapp.Application;
+            Document doc = uidoc.Document;
+
+            Transaction trans = new Transaction(doc);
+            trans.Start("Epic System Change");
+
+            var selection = uidoc.Selection.GetElementIds();
+
+            foreach (ElementId id in selection)
+            {
+                Element E = uidoc.Document.GetElement(id);
+                var P = E.GetParameters("MC System Name");
+
+                if (P.Count > 0)
+                {
+
+                    P[0].Set("Access control system");
+                }
+
+                var P1 = E.GetParameters("MC System Code");
+
+                if (P1.Count > 0)
+                {
+
+                    P1[0].Set("J403");
+                }
+
+            }
+
+            trans.Commit();
+            return Result.Succeeded;
+        }
+
+
+    }
+
+    // ESS-VN
+    [Transaction(TransactionMode.Manual)]
+    public class SetSystem_J404 : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Application app = uiapp.Application;
+            Document doc = uidoc.Document;
+
+            Transaction trans = new Transaction(doc);
+            trans.Start("Epic System Change");
+
+            var selection = uidoc.Selection.GetElementIds();
+
+            foreach (ElementId id in selection)
+            {
+                Element E = uidoc.Document.GetElement(id);
+                var P = E.GetParameters("MC System Name");
+
+                if (P.Count > 0)
+                {
+
+                    P[0].Set("Video surveillance system");
+                }
+
+                var P1 = E.GetParameters("MC System Code");
+
+                if (P1.Count > 0)
+                {
+
+                    P1[0].Set("J404");
+                }
+
+            }
+
+            trans.Commit();
+            return Result.Succeeded;
+        }
+
+
+    }
+
+
     // EL Lights
 
     [Transaction(TransactionMode.Manual)]
